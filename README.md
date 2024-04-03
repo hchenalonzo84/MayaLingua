@@ -1,2 +1,2 @@
-# MayaLingua
-diccioanrio español a kekchi
+# diccionarioKekchi
+Diconario  de español a idiom Maya Kekchi
