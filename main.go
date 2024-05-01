@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -23,6 +24,14 @@ func ConexionDB() (conexion *sql.DB) {
 	log.Println("conexion exitosa")
 	return conexion
 
+}
+func CerrarConexionDB(conexion *sql.DB) {
+	err := conexion.Close()
+	if err != nil {
+		log.Println("Error al cerrar la conexión a la base de datos:", err)
+	} else {
+		log.Println("Conexión a la base de datos cerrada correctamente.")
+	}
 }
 
 var plantillas = template.Must(template.ParseGlob("plantillas/*"))
@@ -53,6 +62,12 @@ type DatoNuevo struct {
 	Quek string
 }
 
+type PalabraJson struct {
+	Id  int64  `json:"id"`
+	Spa string `json:"spa"`
+	Kek string `json:"kek"`
+}
+
 // controlador para el index o inicio de la app
 func Index(rw http.ResponseWriter, r *http.Request) {
 	plantillas.ExecuteTemplate(rw, "index", nil)
@@ -64,6 +79,7 @@ func Principal(rw http.ResponseWriter, r *http.Request) {
 	bandera := r.URL.Query().Get("bandera")
 	spa := r.URL.Query().Get("entrada")
 	kek := r.URL.Query().Get("salida")
+
 	if bandera == "formulario" && spa != "" {
 		datoNuevo.Espa = spa
 		datoNuevo.Quek = kek
@@ -72,6 +88,33 @@ func Principal(rw http.ResponseWriter, r *http.Request) {
 		plantillas.ExecuteTemplate(rw, "main", datoNuevo)
 
 	} else {
+
+		conexionEstablecida := ConexionDB()
+		registros, err := conexionEstablecida.Query("SELECT * FROM dato_a")
+		if err != nil {
+			panic(err.Error())
+		}
+
+		dato := PalabraJson{}
+		arregloPalabras := []PalabraJson{}
+		for registros.Next() {
+			var id int64
+			var spa, kek string
+			err = registros.Scan(&id, &spa, &kek)
+			if err != nil {
+				panic(err.Error())
+			}
+
+			dato.Id = id
+			dato.Spa = spa
+			dato.Kek = kek
+			arregloPalabras = append(arregloPalabras, dato)
+		}
+		arr, err := json.Marshal(arregloPalabras)
+		if err != nil {
+			panic(err.Error())
+		}
+		fmt.Println(string(arr))
 		plantillas.ExecuteTemplate(rw, "main", nil)
 	}
 }
