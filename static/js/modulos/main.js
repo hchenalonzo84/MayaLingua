@@ -9,8 +9,6 @@ d.addEventListener("DOMContentLoaded",(e)=>{
 
 });
 
-d.addEventListener("keydown",(e)=>{
-    
-console.info("JS del main")
-    
+d.addEventListener("keydown",(e)=>{    
+console.info("JS del main")    
 })
