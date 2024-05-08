@@ -58,7 +58,7 @@
                 <form method="GET" action="/consulta" class="row">
                     <div class="col-12 mb-2">
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check btn-checkPerso" name="btnradioSpa" id="btnradio1" autocomplete="off" value="opcionSpa" checked >
+                            <input type="radio" class="btn-check btn-checkPerso cambiarColorBtn" name="btnradioSpa" id="btnradio1" autocomplete="off" value="opcionSpa" checked >
                             <label class="btn btn-outline-primary btn-outline-primaryPerso border-0 rounded-0" for="btnradio1">Español</label>
                             
                             <input type="radio" class="btn-check btn-checkPerso" name="btnradioKek" id="btnradio2" autocomplete="off" value="">
@@ -68,23 +68,40 @@
                     </div>            
                     <div class="col-12 col-sm-12 col-md-5 col-xxl-5">                
                             <div class="form-floating mb-3 ">
+                         <!-- este es un input escondido para almacenar el id que se envia a consulta para un solo registro -->
+                            <input type="hidden" id="id_consulta" name="id_consulta" value="">
+                            <!-- campo de entrada de texto por el usuario -->
+                            {{if.}}
                             <input
                             type="text"
                             class="form-control"
                             name="entrada"
                             id="entrada"
-                            placeholder="" value=""
+                            placeholder="" autocomplete="off" value="{{.Espa}}"
+                            "
+                            />                           
+                            {{else}}
+                            <input
+                            type="text"
+                            class="form-control"
+                            name="entrada"
+                            id="entrada"
+                            placeholder="" autocomplete="off" value=""
                             "
                             />
+                            {{end}}
                             <label for="entrada">Ingrese texto</label>
-                        </div>
+                            <select id="lista" class="consulta-lista w-100" style="display: none; ">
+                                <!-- Aca se agregaran dinamicamente más opciones según sea necesario -->
+                            </select>
+                            </div>
                     </div>           
                     <div class="col-12 col-sm-12 col-md-2 col-xxl-2">                
                   
                     </div>
                     <div class="col-12 col-sm-12 col-md-5 col-xxl-5">                
                         <div class="form-floating mb-3 ">
-                        
+                        {{if.}}
                             <input
                             type="text"
                             class="form-control"
@@ -92,7 +109,15 @@
                             id="salida"
                             placeholder="" value="{{.Quek}}" "
                             />
-                        
+                        {{else}}
+                        <input
+                        type="text"
+                        class="form-control"
+                        name="salida"
+                        id="salida"
+                        placeholder="" value="" "
+                        />
+                        {{end}}
                             <label for="salida">traduccion:</label>
                                                    
                         </div>
@@ -244,6 +269,8 @@
 
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="../static/js/modulos/requestJson.js"></script>
+    <script src="../static/js/modulos/copiarSelect.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script type="module" src="../static/js/modulos/main.js"></script>
 

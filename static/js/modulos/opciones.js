@@ -1,9 +1,11 @@
 export default function opciones(btnradio1, btnradio2) {
     const d= document;
+    let color= d.querySelector("#btnradio1")
     d.addEventListener("click",(e)=>{
         if (e.target.matches(btnradio1)) {
             d.querySelector(btnradio1).setAttribute("value", "opcionSpa");
             d.querySelector(btnradio2).setAttribute("value", "");
+            color.classList.add("cambiarColorBtn")
             console.log("se agrego opcion español")
             console.log("se elimino opcion Kekchi")
             console.log("-----------------------")

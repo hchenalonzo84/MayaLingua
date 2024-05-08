@@ -53,7 +53,9 @@ body{
   background-color: rgba(123, 108, 123, 0.11) !important;  
   z-index: 3;
 }
-
+.cambiarColorBtn{ 
+  background-color: yellow !important;
+}
 .sectionperso{
   padding: 2rem;
   padding-top: 3.6rem;
