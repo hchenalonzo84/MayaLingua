@@ -18,8 +18,7 @@ export default function opciones(btnradio1, btnradio2, entrada, salida) {
             d.querySelector(btnradio2).setAttribute("value", "opcionKek");
             salidaN.readOnly = false;
             entradaN.readOnly = true;
-            entradaN.innerText=" ";
-            salidaN.innerText=" ";
+            limpiarCampos(entradaN,salidaN);
             console.log("Se agregó la opción Kekchi");
             console.log("Se eliminó la opción español");
             console.log("-----------------------");
@@ -28,8 +27,8 @@ export default function opciones(btnradio1, btnradio2, entrada, salida) {
 }
 
 function limpiarCampos(entradaN,salidaN) {
-    entradaN.innerHTML=" ";
-    salidaN.innerHTML=" ";
+    entradaN.value='';
+    salidaN.value='';
 }
     
 
