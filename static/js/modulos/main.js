@@ -5,12 +5,10 @@ const d=document;
 d.addEventListener("DOMContentLoaded",(e)=>{
     hamburgerMenu(".panel-btnPerso", ".panelperso",".menuPerso a");  
     
-    opciones("#btnradio1","#btnradio2");
+    opciones("#btnradio1","#btnradio2","entrada","salida");
 
 });
 
-d.addEventListener("keydown",(e)=>{
-    
-console.info("JS del main")
-    
+d.addEventListener("keydown",(e)=>{    
+console.info("JS del main")    
 })
