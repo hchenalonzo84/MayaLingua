@@ -5,7 +5,7 @@ const d=document;
 d.addEventListener("DOMContentLoaded",(e)=>{
     hamburgerMenu(".panel-btnPerso", ".panelperso",".menuPerso a");  
     
-    opciones("#btnradio1","#btnradio2");
+    opciones("#btnradio1","#btnradio2","entrada","salida");
 
 });
 
