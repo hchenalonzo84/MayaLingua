@@ -25,6 +25,7 @@ func ConexionDB() (conexion *sql.DB) {
 	return conexion
 
 }
+
 func CerrarConexionDB(conexion *sql.DB) {
 	err := conexion.Close()
 	if err != nil {
@@ -46,7 +47,7 @@ func main() {
 
 	log.Println("servidor corriendo.....")
 	//servidor local en puerto 3000
-	http.ListenAndServe("localhost:3000", nil)
+	http.ListenAndServe("localhost:3010", nil) //cambiar a 3000
 
 }
 
