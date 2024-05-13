@@ -40,6 +40,7 @@ var plantillas = template.Must(template.ParseGlob("plantillas/*"))
 func main() {
 	staticFiles := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", staticFiles))
+	//rutas
 	http.HandleFunc("/", Index)
 	http.HandleFunc("/main", Principal)
 	http.HandleFunc("/consulta", Consulta)
@@ -50,7 +51,7 @@ func main() {
 
 	log.Println("servidor corriendo.....")
 	//servidor local en puerto 3000
-	http.ListenAndServe("localhost:3010", nil) //cambiar a 3000
+	http.ListenAndServe("localhost:3000", nil) //cambiar a 3000
 
 }
 

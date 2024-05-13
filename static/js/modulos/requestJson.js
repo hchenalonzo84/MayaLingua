@@ -2,10 +2,14 @@
 const d=document;
 d.getElementById("entrada").addEventListener("keyup", getPalabras);
         function getPalabras() {
+            let gif=d.querySelector("#imgCarga");
+            let gif2=d.querySelector("#imgCarga2");
             let inputCP = d.getElementById("entrada").value;
             let lista = d.getElementById("lista"); 
             // let opLIsta = d.getElementById("opLIsta");           
             if (inputCP.length > 0) {
+                gif.style.display='block'                
+                gif2.style.display='none';                
                 let url = "/obtenerDatosJson";
                 let formData = new FormData();
                 formData.append("entrada", inputCP);
@@ -32,6 +36,7 @@ d.getElementById("entrada").addEventListener("keyup", getPalabras);
                 .catch(err => console.error('Error al obtener datos:', err));
             } else {
                 lista.style.display = 'none';
+                gif.style.display='none'
             }
         }
        // ID: ${item.id},

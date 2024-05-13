@@ -198,6 +198,9 @@ body{
   display: block;
 }
 
+.centrarControl{
+  margin: 0 auto;
+}
 @media screen and (max-width:576px) {
   .fondo{
   background-image: url("../img/main/NagualMaya.png");
